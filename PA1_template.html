@@ -465,17 +465,8 @@ head(byInterval)</code></pre>
 <pre class="r"><code>sum(is.na(data$steps))</code></pre>
 <pre><code>## [1] 2304</code></pre>
 <p>For the missing values, we’ll just imput the mean for the interval. For this, we’ll use the <code>expss</code> package. We’ll also create a new data set which we’ll call <code>data2</code>.</p>
-<pre class="r"><code>library(expss)</code></pre>
-<pre><code>## Warning: package &#39;expss&#39; was built under R version 3.5.3</code></pre>
-<pre><code>## 
-## Use &#39;expss_output_rnotebook()&#39; to display tables inside R Notebooks.
-##  To return to the console output, use &#39;expss_output_default()&#39;.</code></pre>
-<pre><code>## 
-## Attaching package: &#39;expss&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
-## 
-##     between, compute, contains, first, last, na_if, recode, vars</code></pre>
-<pre class="r"><code>data2 &lt;- data
+<pre class="r"><code>library(expss)
+data2 &lt;- data
 
 for (i in 1:length(data2$steps)){
      if(is.na(data2$steps[i] == TRUE)){

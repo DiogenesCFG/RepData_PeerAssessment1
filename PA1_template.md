@@ -204,30 +204,6 @@ We'll also create a new data set which we'll call `data2`.
 
 ```r
 library(expss)
-```
-
-```
-## Warning: package 'expss' was built under R version 3.5.3
-```
-
-```
-## 
-## Use 'expss_output_rnotebook()' to display tables inside R Notebooks.
-##  To return to the console output, use 'expss_output_default()'.
-```
-
-```
-## 
-## Attaching package: 'expss'
-```
-
-```
-## The following objects are masked from 'package:dplyr':
-## 
-##     between, compute, contains, first, last, na_if, recode, vars
-```
-
-```r
 data2 <- data
 
 for (i in 1:length(data2$steps)){

@@ -105,7 +105,7 @@ sum(is.na(data$steps))
 For the missing values, we'll just imput the mean for the interval. For this, we'll use the `expss` package.
 We'll also create a new data set which we'll call `data2`.
 
-```{r imputing na, echo = TRUE}
+```{r imputing na, echo = TRUE, warning = FALSE, message = FALSE}
 library(expss)
 data2 <- data
 
@@ -173,7 +173,7 @@ table(data2$day)
 
 And now for the plot:
 
-```{r panel plot}
+```{r panel plot, echo = TRUE}
 byInterval2_weekday <- data2 %>%
      filter(day == "weekday") %>%
      group_by(interval) %>%
