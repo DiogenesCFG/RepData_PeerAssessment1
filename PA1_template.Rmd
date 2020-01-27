@@ -15,7 +15,7 @@ The data is contained in a zip compressed file named activity. Unzipping this fi
 the data, which we will then read into a variable `data`into our environment.
 We'll also call the `head()` function and the `str()` function to see how our data looks like
 
-```{r reading the data, echo = TRUE}
+```{r reading_the_data, echo = TRUE}
 unzip(".\\activity.zip", exdir = ".\\Data")
 data <- read.csv(".\\Data\\activity.csv", header = TRUE, stringsAsFactors = FALSE)
 head(data)
@@ -25,7 +25,7 @@ str(data)
 
 As we can see, our data consists of three variables. The first one, `steps`, consists of integers,
 mainly, how many steps has the person given in the refered interval. Let's look at a summary of this variable:
-```{r summary steps, echo = TRUE}
+```{r summary_steps, echo = TRUE}
 summary(data$steps)
 ```
 
@@ -33,7 +33,7 @@ The second and the third variables, `date` and `interval`, identify the moment f
 was taken. This variables are of class character and integer, respectively. To make things easier in the future,
 we'll redefine the class of `date` to set it to a Date class:
 
-```{r setting Date, echo = TRUE}
+```{r setting_Date, echo = TRUE}
 data$date = as.Date(as.character(data$date))
 class(data$date)
 ```
@@ -57,7 +57,7 @@ head(sumStatistics)
 
 Using this table we just created, we can plot the histogram for the number of steps taken each day.
 
-```{r histogram daily steps, echo = TRUE}
+```{r histogram_daily_steps, echo = TRUE}
 hist(sumStatistics$sum, breaks = 20, main = "Frequency steps per day",
      xlab = "Steps per day", col = "cadetblue1")
 
@@ -65,7 +65,7 @@ hist(sumStatistics$sum, breaks = 20, main = "Frequency steps per day",
 
 Now to calculate the mean and the median of steps:
 
-```{r mean_median steps, echo = TRUE}
+```{r mean_median_steps, echo = TRUE}
 sumStatistics %>%
      summarize(mean = mean(sum, na.rm = TRUE), median = median(sum, na.rm = TRUE))
 ```
@@ -98,14 +98,14 @@ data.frame(interval = byInterval[which.max(byInterval$mean), 1], max = max(byInt
 ## Imputing missing values
 First, to know how many missing values are there in the data
 
-```{r sum missing values, echo = TRUE}
+```{r sum_missing_values, echo = TRUE}
 sum(is.na(data$steps))
 ```
 
 For the missing values, we'll just imput the mean for the interval. For this, we'll use the `expss` package.
 We'll also create a new data set which we'll call `data2`.
 
-```{r imputing na, echo = TRUE, warning = FALSE, message = FALSE}
+```{r imputing_na, echo = TRUE, warning = FALSE, message = FALSE}
 library(expss)
 data2 <- data
 
@@ -121,12 +121,12 @@ summary(data2)
 
 Just to make sure there are no remaininig missing values.
 
-```{r sum missing values check, echo = TRUE}
+```{r sum_missing_values_check, echo = TRUE}
 sum(is.na(data2$steps))
 ```
 
 Now, we make again a histogram with the new data set.
-```{r histogram new data set, echo = TRUE}
+```{r histogram_new_data_set, echo = TRUE}
 sumStatistics2 <- data2 %>%
                group_by(date) %>%
                summarize(sum = sum(steps, na.rm = TRUE))
@@ -144,7 +144,7 @@ sumStatistics2 %>%
 
 Comparing with the previous data
 
-```{r comparison mean_median, echo = TRUE}
+```{r comparison_mean_median, echo = TRUE}
 x <- data.frame(data_set = c("original data", "imputed na"), mean = c(0, 0), median = c(0, 0))
 x[1, 2:3] <- sumStatistics %>% summarize(mean = mean(sum), median = median(sum))
 x[2, 2:3] <- sumStatistics2 %>% summarize(mean = mean(sum), median = median(sum))
@@ -157,7 +157,7 @@ Let's work with the `data2`data set, i.e., with the data set with imputed data f
 
 First, we'll create a new variable that describes whether it's a weekday or a weekend.
 
-```{r weekday variable, echo = TRUE}
+```{r weekday_variable, echo = TRUE}
 Sys.setlocale("LC_TIME", "C") #so it's in english
 
 data2$day <- "weekday"
@@ -173,7 +173,7 @@ table(data2$day)
 
 And now for the plot:
 
-```{r panel plot, echo = TRUE}
+```{r panel_plot, echo = TRUE}
 byInterval2_weekday <- data2 %>%
      filter(day == "weekday") %>%
      group_by(interval) %>%

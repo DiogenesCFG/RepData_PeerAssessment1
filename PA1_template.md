@@ -122,7 +122,7 @@ hist(sumStatistics$sum, breaks = 20, main = "Frequency steps per day",
      xlab = "Steps per day", col = "cadetblue1")
 ```
 
-![](PA1_template_files/figure-html/histogram daily steps-1.png)<!-- -->
+![](PA1_template_files/figure-html/histogram_daily_steps-1.png)<!-- -->
 
 Now to calculate the mean and the median of steps:
 
@@ -261,7 +261,7 @@ hist(sumStatistics2$sum, breaks = 20, main = "Frequency steps per day",
      xlab = "Steps per day", col = "pink")
 ```
 
-![](PA1_template_files/figure-html/histogram new data set-1.png)<!-- -->
+![](PA1_template_files/figure-html/histogram_new_data_set-1.png)<!-- -->
 
 Getting the mean and the median
 
@@ -351,6 +351,6 @@ xyplot(mean ~ interval | day, data = byInterval2, layout = c(1, 2), type = "l",
        xlab = "Day-Time Interval", ylab = "Average number of steps")
 ```
 
-![](PA1_template_files/figure-html/panel plot-1.png)<!-- -->
+![](PA1_template_files/figure-html/panel_plot-1.png)<!-- -->
 
 
